@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 public class ContactDTO {
-    private Long id;
+    private Long idContact;
     private String name;
     private String email;
     private String subject;
