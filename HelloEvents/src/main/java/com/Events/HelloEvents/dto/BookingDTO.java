@@ -8,7 +8,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 public class BookingDTO {
-    private Long id;
+    private Long idBooking;
     private LocalDate bookingDate;
     private UserDTO user;
     private EventDTO event;

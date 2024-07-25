@@ -16,11 +16,10 @@ public class Booking {
     private LocalDate bookingDate;
 
     @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "idUser", nullable = false)
     private Users user;
 
     @ManyToOne
+    @JoinColumn(name = "event_id", referencedColumnName = "idEvent", nullable = false)
     private Event event;
-
-
 }
-

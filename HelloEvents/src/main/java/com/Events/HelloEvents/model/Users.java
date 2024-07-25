@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.management.relation.Role;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -20,6 +19,6 @@ public class Users {
     private String email;
     private String role;
 
-
+    @OneToMany(mappedBy = "user")
+    private Set<Booking> bookings = new HashSet<>();
 }
-
