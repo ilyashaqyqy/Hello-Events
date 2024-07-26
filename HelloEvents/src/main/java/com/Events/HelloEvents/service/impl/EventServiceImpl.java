@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -62,6 +63,30 @@ public class EventServiceImpl implements EventService {
         }
         eventRepository.deleteById(id);
     }
+
+    @Override
+    public List<EventDTO> searchEvents(String category, String location, LocalDate date) {
+        List<Event> events;
+        if (category != null && location != null && date != null) {
+            events = eventRepository.findByCategoryAndLocationAndDate(category, location, date);
+        } else if (category != null && location != null) {
+            events = eventRepository.findByCategoryAndLocation(category, location);
+        } else if (category != null && date != null) {
+            events = eventRepository.findByCategoryAndDate(category, date);
+        } else if (location != null && date != null) {
+            events = eventRepository.findByLocationAndDate(location, date);
+        } else if (category != null) {
+            events = eventRepository.findByCategory(category);
+        } else if (location != null) {
+            events = eventRepository.findByLocation(location);
+        } else if (date != null) {
+            events = eventRepository.findByDate(date);
+        } else {
+            events = eventRepository.findAll();
+        }
+        return events.stream().map(this::convertToDTO).collect(Collectors.toList());
+    }
+
 
     private EventDTO convertToDTO(Event event) {
         return modelMapper.map(event, EventDTO.class);

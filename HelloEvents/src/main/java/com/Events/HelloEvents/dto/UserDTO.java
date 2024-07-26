@@ -10,6 +10,7 @@ public class UserDTO {
     private Long idUser;
     private String username;
     private String email;
-
+    private String password;
+    private String role;
 
 }

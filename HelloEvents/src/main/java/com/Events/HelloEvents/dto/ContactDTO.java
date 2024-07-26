@@ -15,6 +15,6 @@ public class ContactDTO {
     private String subject;
     private String message;
     private LocalDateTime sentAt;
-
+    private UserDTO user;
 }
 
