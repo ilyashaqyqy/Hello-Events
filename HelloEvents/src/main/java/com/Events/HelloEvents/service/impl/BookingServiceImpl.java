@@ -4,6 +4,7 @@ import com.Events.HelloEvents.dto.BookingDTO;
 import com.Events.HelloEvents.dto.UserDTO;
 import com.Events.HelloEvents.dto.EventDTO;
 import com.Events.HelloEvents.model.Booking;
+import com.Events.HelloEvents.model.Role;
 import com.Events.HelloEvents.model.Users;
 import com.Events.HelloEvents.model.Event;
 import com.Events.HelloEvents.repositories.BookingRepository;
@@ -85,7 +86,7 @@ public class BookingServiceImpl implements BookingService {
         user.setUsername(userDTO.getUsername());
         user.setEmail(userDTO.getEmail());
         user.setPassword(userDTO.getPassword());
-        user.setRole(userDTO.getRole()); // Ensure UserDTO has role if needed
+        user.setRole(Role.valueOf(userDTO.getRole())); // Ensure UserDTO has role if needed
         return user;
     }
 
@@ -95,7 +96,7 @@ public class BookingServiceImpl implements BookingService {
         userDTO.setUsername(user.getUsername());
         userDTO.setEmail(user.getEmail());
         userDTO.setPassword(user.getPassword());
-        userDTO.setRole(user.getRole());
+        userDTO.setRole(String.valueOf(user.getRole()));
         return userDTO;
     }
 
