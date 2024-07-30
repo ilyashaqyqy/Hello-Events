@@ -1,6 +1,7 @@
 package com.Events.HelloEvents.service.impl;
 
 import com.Events.HelloEvents.dto.UserDTO;
+import com.Events.HelloEvents.model.Role;
 import com.Events.HelloEvents.model.Users;
 import com.Events.HelloEvents.repositories.UserRepository;
 import com.Events.HelloEvents.service.UserService;
@@ -47,7 +48,7 @@ public class UserServiceImpl implements UserService {
             user.setUsername(userDTO.getUsername());
             user.setEmail(userDTO.getEmail());
             user.setPassword(userDTO.getPassword());
-            user.setRole(userDTO.getRole());
+            user.setRole(Role.valueOf(userDTO.getRole()));
             Users updatedUser = userRepository.save(user);
             return modelMapper.map(updatedUser, UserDTO.class);
         } else {

@@ -1,6 +1,7 @@
 package com.Events.HelloEvents.service.impl;
 
 import com.Events.HelloEvents.dto.UserDTO;
+import com.Events.HelloEvents.model.Role;
 import com.Events.HelloEvents.model.Users;
 import com.Events.HelloEvents.repositories.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -39,7 +40,7 @@ public class UserServiceImplTest {
         user.setUsername("testuser");
         user.setEmail("testuser@example.com");
         user.setPassword("password123");
-        user.setRole("USER");
+        user.setRole(Role.valueOf("USER"));
 
         userDTO = new UserDTO();
         userDTO.setIdUser(1L);

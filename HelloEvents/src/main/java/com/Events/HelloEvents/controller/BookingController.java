@@ -1,13 +1,12 @@
 package com.Events.HelloEvents.controller;
 
 import com.Events.HelloEvents.dto.BookingDTO;
-import com.Events.HelloEvents.model.Booking;
 import com.Events.HelloEvents.service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -17,6 +16,7 @@ public class BookingController {
     @Autowired
     private BookingService bookingService;
 
+    @PreAuthorize("hasRole('ROLE_USER')")
     @PostMapping
     public ResponseEntity<BookingDTO> createBooking(@RequestBody BookingDTO bookingDTO) {
         try {
@@ -29,9 +29,9 @@ public class BookingController {
         }
     }
 
+    @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("/user/{userId}")
     public List<BookingDTO> getBookingsByUserId(@PathVariable Long userId) {
         return bookingService.getBookingsByUserId(userId);
     }
 }
-
